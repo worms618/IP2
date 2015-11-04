@@ -22,7 +22,7 @@ namespace ErgometerApplication
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label connectionLabel;
-        private PanelClientActions actionpanel;
+        public PanelClientActions actionpanel { get; }
 
         public PanelClientChat() : base()
         {

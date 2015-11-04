@@ -21,6 +21,8 @@ namespace ErgometerServer
         bool running;
         bool loggedin;
 
+        public int stepId;
+
         List<Meting> metingen;
         List<ChatMessage> chat;
 
@@ -32,7 +34,7 @@ namespace ErgometerServer
             this.session = 0;
             this.running = false;
             this.loggedin = false;
-
+            stepId = 0;
             metingen = new List<Meting>();
             chat = new List<ChatMessage>();
             session = FileHandler.GenerateSession();
@@ -102,16 +104,19 @@ namespace ErgometerServer
                         loggedin = false;
                         running = false;
                         Console.WriteLine(name + " logged out");
-                        FileHandler.WriteMetingen(session, metingen);
+                        FileHandler.WriteMetingen(session, metingen, stepId);
                         FileHandler.WriteChat(session, chat);
                         client.Close();
+                        break;
+                    case NetCommand.CommandType.STEP:
+                        stepId = input.stepID;
                         break;
                     case NetCommand.CommandType.ERROR:
                         Console.WriteLine("An error occured, assuming client disconnected");
                         loggedin = false;
                         running = false;
                         Console.WriteLine(name + " logged out due to an error");
-                        FileHandler.WriteMetingen(session, metingen);
+                        FileHandler.WriteMetingen(session, metingen, stepId);
                         FileHandler.WriteChat(session, chat);
                         client.Close();
                         break;

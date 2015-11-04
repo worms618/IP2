@@ -141,6 +141,7 @@ namespace ErgometerApplication
 
             if (Doctor != null && Doctor.Connected)
             {
+               // NetHelper.SendNetCommand(Doctor, new NetCommand(Client.chat.action.id, Session));
                 NetHelper.SendNetCommand(Doctor, new NetCommand(NetCommand.CommandType.LOGOUT, Session));
                 Loggedin = false;
                 running = false;

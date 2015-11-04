@@ -59,7 +59,7 @@ namespace ErgometerServer
             Console.WriteLine("Created session at " + Helper.MillisecondsToTime(Helper.Now));
         }
 
-        public static void WriteMetingen(int session, List<Meting> metingen)
+        public static void WriteMetingen(int session, List<Meting> metingen, int stepID)
         {
             if (metingen.Count <= 20 && Directory.Exists(GetSessionFolder(session)))
             {
@@ -70,7 +70,7 @@ namespace ErgometerServer
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(metingen.ToArray());
                 File.WriteAllText(GetSessionMetingen(session), json);
                 Console.WriteLine("Writing metingen: " + GetSessionMetingen(session));
-                File.WriteAllText(GetSessionFile(session), File.ReadAllText(GetSessionFile(session)) + Environment.NewLine + Helper.Now);
+                File.WriteAllText(GetSessionFile(session), File.ReadAllText(GetSessionFile(session)) + Environment.NewLine + Helper.Now+ Environment.NewLine + stepID);
             }
             
         }
@@ -119,6 +119,12 @@ namespace ErgometerServer
             }
 
             return sessiondata;
+        }
+
+        internal static int GetStepID(int session)
+        {
+            string[] lines = File.ReadAllLines(GetSessionFile(session));
+            return int.Parse(lines[3]);
         }
 
         public static void WriteChat(int session, List<ChatMessage> chat)

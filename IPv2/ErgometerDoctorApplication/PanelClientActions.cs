@@ -14,20 +14,22 @@ namespace ErgometerApplication
         public PanelClientActions() : base()
         {
             actions = new List<string>();
-            actions.Add("Test actie 1");
-            actions.Add("Test actie 2");
-            actions.Add("Test actie 3");
-            actions.Add("Test actie 4");
-            actions.Add("Test actie 5");
+            actions.Add("Stage 1: Rustig roeien");
+            actions.Add("Stage 1: Power Level: 40");
+            actions.Add("Stage 1: Power Level: 55");
+            actions.Add("Stage 1: Power Level: 70");
+            actions.Add("Stage 1: Power Level: 85");
+            actions.Add("Stage 2: Stage 2 begint");
+            actions.Add("Stage 2: Power Level: 100");
+            actions.Add("Stage 2: Power Level: 115");
+            actions.Add("Stage 2: Power Level: 130");
+            actions.Add("Stage 2: Power Level: 145");
+            actions.Add("Stage 3: Stage 3 begint");
+            actions.Add("Stage 3: Power Level: 160");
+            actions.Add("Stage 3: Power Level: 175");
+            actions.Add("Stage 3: Power Level: 190");
+            actions.Add("Stage 3: Power Level: 205");
 
-            actions.Add("Test actie 4");
-            actions.Add("Test actie 5");
-            actions.Add("Test actie 4");
-            actions.Add("Test actie 5");
-            actions.Add("Test actie 4");
-            actions.Add("Test actie 5");
-            actions.Add("Test actie 4");
-            actions.Add("Test actie 5");
             foreach (string a in actions)
             {
                 this.Controls.Add(actionLabel(a));
@@ -61,5 +63,6 @@ namespace ErgometerApplication
                 this.Controls[id].ForeColor = System.Drawing.Color.White;
             }
         }
+
     }
 }

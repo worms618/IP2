@@ -9,7 +9,7 @@ namespace ErgometerLibrary
 {
     public class NetCommand
     {
-        public enum CommandType { LOGIN, DATA, CHAT, LOGOUT, SESSION, VALUESET, USER, RESPONSE, REQUEST, LENGTH, SESSIONDATA, ERROR, BROADCAST }
+        public enum CommandType { LOGIN, DATA, CHAT, LOGOUT, SESSION, VALUESET, USER, RESPONSE, REQUEST, LENGTH, STEP, SESSIONDATA, ERROR, BROADCAST }
         public enum RequestType { USERS, ALLSESSIONS, OLDDATA, SESSIONDATA, CHAT }
         public enum ResponseType { LOGINOK, LOGINWRONG, ERROR, NOTLOGGEDIN }
         public enum ValueType { TIME, POWER, ENERGY, DISTANCE }
@@ -29,6 +29,7 @@ namespace ErgometerLibrary
         public string ChatMessage { get; set; }
         public Meting Meting { get; set; }
         public int LengthValue { get; set; }
+        public int stepID { get; set; }
 
         //SESSION
         public NetCommand(int session)
@@ -36,6 +37,15 @@ namespace ErgometerLibrary
             Type = CommandType.SESSION;
             Session = session;
             Timestamp = Helper.Now;
+        }
+
+        //STEP
+        public NetCommand(int stepid, int session)
+        {
+            Type = CommandType.STEP;
+            Session = session;
+            Timestamp = Helper.Now;
+            stepID = stepid;
         }
 
         //SESSIONDATA
@@ -196,9 +206,21 @@ namespace ErgometerLibrary
                     return ParseSessionData(session, args);
                 case 12:
                     return ParseBroadcast(session, args);
+                case 13:
+                    return ParseStepID(session, args);
                 default:
                     throw new FormatException("Error in NetCommand: " + comType + " is not a valid command type.");
             }
+        }
+
+        private static NetCommand ParseStepID(int session, string[] args)
+        {
+            if (args.Length != 1)
+                throw new MissingFieldException("Error in NetCommand: STEP Message is missing arguments");
+
+            NetCommand temp = new NetCommand(int.Parse(args[0]), session);
+
+            return temp;
         }
 
         private static NetCommand ParseBroadcast(int session, string[] args)
@@ -409,6 +431,9 @@ namespace ErgometerLibrary
                     break;
                 case CommandType.BROADCAST:
                     command += "12»ses" + Session + "»" + ChatMessage;
+                    break;
+                case CommandType.STEP:
+                    command += "13»ses" + Session + "»" + stepID;
                     break;
                 case CommandType.ERROR:
                     command += "ERROR IN NETCOMMAND";

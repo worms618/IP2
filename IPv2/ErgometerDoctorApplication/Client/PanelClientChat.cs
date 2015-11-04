@@ -27,7 +27,7 @@ namespace ErgometerDoctorApplication
 
         private int Session { get; }
 
-        public PanelClientChat(int session, string name,int stepID) : base()
+        public PanelClientChat(int session, string name) : base()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -37,7 +37,7 @@ namespace ErgometerDoctorApplication
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            actions = new PanelClientActions(stepID);
+            actions = new PanelClientActions();
             Session = session;
 
             this.panel3 = new System.Windows.Forms.Panel();
@@ -148,6 +148,12 @@ namespace ErgometerDoctorApplication
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseWheel);
 
             passChatMessage = new ChatDelegate(this.AddChatItem);
+            passStep = new StepDelegate(this.addStepID);
+        }
+
+        private void addStepID(int stepid)
+        {
+            actions.setActiveColors(stepid);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -203,6 +209,8 @@ namespace ErgometerDoctorApplication
         }
 
         public delegate void ChatDelegate(ChatMessage chat);
+        public delegate void StepDelegate(int stepid);
         public ChatDelegate passChatMessage;
+        public StepDelegate passStep;
     }
 }

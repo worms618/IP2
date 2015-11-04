@@ -11,7 +11,7 @@ namespace ErgometerApplication
     {
         List<string> actions;
 
-        public PanelClientActions(int stepID) : base()
+        public PanelClientActions() : base()
         {
             actions = new List<string>();
             actions.Add("Stage 1: Rustig roeien");
@@ -34,11 +34,7 @@ namespace ErgometerApplication
             {
                 this.Controls.Add(actionLabel(a));
             }
-            Console.WriteLine("STEP ID:" + stepID);
-            for (int i = 0; i <= stepID; i++)
-            {
-                setActiveColor(i);
-            }
+            
 
             this.Location = new System.Drawing.Point(0, 0);
             this.AutoSize = true;
@@ -73,6 +69,15 @@ namespace ErgometerApplication
             {
                 this.Controls[id].BackColor = System.Drawing.Color.LawnGreen;
                 this.Controls[id].ForeColor = System.Drawing.Color.White;
+            }
+        }
+
+        public void setActiveColors(int stepID)
+        {
+            Console.WriteLine("STEP ID:" + stepID);
+            for (int i = 0; i <= stepID; i++)
+            {
+                setActiveColor(i);
             }
         }
 

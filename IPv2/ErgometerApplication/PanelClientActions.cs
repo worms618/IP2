@@ -79,7 +79,11 @@ namespace ErgometerApplication
             if (minute > _currentAction)
             {
                 _currentAction++;
-                setActiveColor(_currentAction);                
+                setActiveColor(_currentAction);
+
+                int val = Math.Min(MainClient.Metingen.Last().Power + 15, 400);
+                MainClient.ComPort.Write("PW " + val);
+                MainClient.ComPort.Read();
             }
         }
     }

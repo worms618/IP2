@@ -20,13 +20,13 @@ namespace ErgometerDoctorApplication
         public List<Meting> Metingen { get; set; }
         public List<ChatMessage> Chat { get; }
 
-        public ClientThread(string name, int session,int stepid, bool old)
+        public ClientThread(string name, int session, bool old)
         {
             Name = name;
             Session = session;
             IsOldData = old;
 
-            window = new SessionWindow(Name, old, Session,stepid, this);
+            window = new SessionWindow(Name, old, Session, this);
             window.FormClosed += Window_FormClosed;
 
             Metingen = new List<Meting>();
@@ -56,6 +56,10 @@ namespace ErgometerDoctorApplication
                     ChatMessage chat = new ChatMessage(command.DisplayName, command.ChatMessage, command.IsDoctor);
                     Chat.Add(chat);
                     window.panelClientChat.Invoke(window.panelClientChat.passChatMessage, new Object[] { chat });
+                    break;
+                case NetCommand.CommandType.STEP:
+                    int stepID = command.stepID;
+                    window.panelClientChat.Invoke(window.panelClientChat.passStep, new Object[] { stepID });
                     break;
             }
         }

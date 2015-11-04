@@ -28,7 +28,7 @@ namespace ErgometerDoctorApplication
         //Server information
         public static List<ClientThread> clients;
         public static Dictionary<string, string> users;
-        public static List<Tuple<string, double, int,int>> oldSessionsData;
+        public static List<Tuple<string, double, int>> oldSessionsData;
 
         public static void RemoveActiveClient(ClientThread clientThread)
         {
@@ -46,7 +46,7 @@ namespace ErgometerDoctorApplication
             clients = new List<ClientThread>();
             users = new Dictionary<string, string>();
             activesessions = new Dictionary<int, string>();
-            oldSessionsData = new List<Tuple<string, double, int,int>>();
+            oldSessionsData = new List<Tuple<string, double, int>>();
         }
 
         public static bool Connect(string password, out string error)
@@ -197,7 +197,7 @@ namespace ErgometerDoctorApplication
                     }
                     if (SessionsBeingSent)
                     {
-                        oldSessionsData.Add(new Tuple<string, double, int,int>(command.DisplayName, command.Timestamp, command.Session,command.stepID));
+                        oldSessionsData.Add(new Tuple<string, double, int>(command.DisplayName, command.Timestamp, command.Session));
                         SessionsSent++;
                         if (SessionsSent >= SessionsLength)
                             SessionsBeingSent = false;
@@ -239,13 +239,13 @@ namespace ErgometerDoctorApplication
             return false;
         }
 
-        public static void StartNewClient(string name, int session,int stepID)
+        public static void StartNewClient(string name, int session)
         {
             if (IsSessionRunning(session))
                 return;
 
             //Start new client
-            ClientThread cl = new ClientThread(name, session,0, false);
+            ClientThread cl = new ClientThread(name, session, false);
             clients.Add(cl);
 
             //Run client on new thread
@@ -254,7 +254,7 @@ namespace ErgometerDoctorApplication
             thread.Start();
         }
 
-        public static void StartOldClient(string name, int session, int stepID)
+        public static void StartOldClient(string name, int session)
         {
             if (IsSessionRunning(session))
                 return;
@@ -263,7 +263,7 @@ namespace ErgometerDoctorApplication
             SendNetCommand(new NetCommand(NetCommand.RequestType.CHAT, session));
 
             //Start new client
-            ClientThread cl = new ClientThread(name, session,stepID, true);
+            ClientThread cl = new ClientThread(name, session, true);
             clients.Add(cl);
 
             //Run client on new thread

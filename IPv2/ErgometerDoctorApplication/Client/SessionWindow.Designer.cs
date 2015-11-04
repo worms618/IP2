@@ -39,7 +39,7 @@ namespace ErgometerDoctorApplication
             this.panelDataViewLeft = new System.Windows.Forms.Panel();
             this.panelClientSetData = new PanelClientSetData(Session);
             this.panelGraphView = new ErgometerDoctorApplication.PanelGraphView();
-            this.panelClientChat = new ErgometerDoctorApplication.PanelClientChat(Session, ClientName, stepID);
+            this.panelClientChat = new ErgometerDoctorApplication.PanelClientChat(Session, ClientName);
             this.panelTopBar = new System.Windows.Forms.Panel();
             this.labelUsername = new System.Windows.Forms.Label();
             this.labelHallo = new System.Windows.Forms.Label();

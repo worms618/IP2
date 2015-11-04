@@ -66,6 +66,9 @@ namespace ErgometerApplication
                     }
                     Thread.Sleep(200);
 
+                    ComPort.Write("CM");
+                    ComPort.Read();
+
                     ComPort.Write("ST");
                     string response = ComPort.Read();
 

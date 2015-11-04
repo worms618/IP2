@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,6 +10,9 @@ namespace ErgometerApplication
 {
     public class PanelClientActions : Panel
     {
+        private int _currentAction;
+        public int CurrentAction => _currentAction;
+
         List<string> actions;
 
         public PanelClientActions(): base()
@@ -39,9 +43,9 @@ namespace ErgometerApplication
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly;
             this.Size = new System.Drawing.Size(390, 400);
-            setActiveColor(0);
+            setActiveColor(_currentAction);
         }
-
+        
         private Label actionLabel(string action)
         {
             Label label = new Label();
@@ -55,10 +59,27 @@ namespace ErgometerApplication
 
         public void setActiveColor(int id)
         {
-            if(id < actions.Count)
+            if (id < actions.Count)
+            {
+                this.Controls[id].BackColor = System.Drawing.Color.Orange;
+                this.Controls[id].ForeColor = System.Drawing.Color.White;
+            }
+
+            id--;
+
+            if(id < actions.Count && id >= 0)
             {
                 this.Controls[id].BackColor = System.Drawing.Color.LawnGreen;
                 this. Controls[id].ForeColor = System.Drawing.Color.White;
+            }
+        }
+
+        public void NextAction(int minute)
+        {
+            if (minute > _currentAction)
+            {
+                _currentAction++;
+                setActiveColor(_currentAction);                
             }
         }
     }

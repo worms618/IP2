@@ -39,6 +39,8 @@ namespace ErgometerApplication
                 if (response != "err")
                 {
                     Meting m = MainClient.SaveMeting(response);
+                    
+                    panelClientChat.actionpanel.NextAction(m.Seconds/60);
 
                     heartBeat.updateValue(m.HeartBeat);
                     RPM.updateValue(m.RPM);

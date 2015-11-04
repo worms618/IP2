@@ -20,16 +20,16 @@ namespace ErgometerApplication
             actions.Add("Stage 1: Power Level: 70");
             actions.Add("Stage 1: Power Level: 85");
             actions.Add("Stage 2: Stage 2 begint");
-            actions.Add("Stage 2: Power Level: 100");
             actions.Add("Stage 2: Power Level: 115");
             actions.Add("Stage 2: Power Level: 130");
             actions.Add("Stage 2: Power Level: 145");
+            actions.Add("Stage 2: Power Level: 160");
             actions.Add("Stage 3: Stage 3 begint");
-            actions.Add("Stage 3: Power Level: 160");
-            actions.Add("Stage 3: Power Level: 175");
             actions.Add("Stage 3: Power Level: 190");
             actions.Add("Stage 3: Power Level: 205");
-
+            actions.Add("Stage 3: Power Level: 220");
+            actions.Add("Stage 3: Power Level: 245");
+            actions.Add("U kan stoppen met de test");
             foreach (string a in actions)
             {
                 this.Controls.Add(actionLabel(a));

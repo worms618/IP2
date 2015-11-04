@@ -69,6 +69,9 @@ namespace ErgometerApplication
                     ComPort.Write("CM");
                     ComPort.Read();
 
+                    ComPort.Write("PW " + 25);
+                    ComPort.Read();
+
                     ComPort.Write("ST");
                     string response = ComPort.Read();
 

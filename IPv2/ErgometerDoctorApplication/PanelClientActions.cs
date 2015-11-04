@@ -11,7 +11,7 @@ namespace ErgometerApplication
     {
         List<string> actions;
 
-        public PanelClientActions() : base()
+        public PanelClientActions(int stepID) : base()
         {
             actions = new List<string>();
             actions.Add("Stage 1: Rustig roeien");
@@ -34,6 +34,11 @@ namespace ErgometerApplication
             {
                 this.Controls.Add(actionLabel(a));
             }
+            Console.WriteLine("STEP ID:" + stepID);
+            for (int i = 0; i <= stepID; i++)
+            {
+                setActiveColor(i);
+            }
 
             this.Location = new System.Drawing.Point(0, 0);
             this.AutoSize = true;
@@ -48,8 +53,6 @@ namespace ErgometerApplication
             label.Dock = DockStyle.Bottom;
             label.Text = action;
             label.AutoSize = false;
-            label.BackColor = System.Drawing.Color.LawnGreen;
-            label.ForeColor = System.Drawing.Color.White;
             label.Size = new System.Drawing.Size(300, 40);
             label.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             return label;
@@ -57,7 +60,16 @@ namespace ErgometerApplication
 
         public void setActiveColor(int id)
         {
+            
             if (id < actions.Count)
+            {
+                this.Controls[id].BackColor = System.Drawing.Color.Orange;
+                this.Controls[id].ForeColor = System.Drawing.Color.White;
+            }
+
+            id--;
+
+            if (id < actions.Count && id >= 0)
             {
                 this.Controls[id].BackColor = System.Drawing.Color.LawnGreen;
                 this.Controls[id].ForeColor = System.Drawing.Color.White;

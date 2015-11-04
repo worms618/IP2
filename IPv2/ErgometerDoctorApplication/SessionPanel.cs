@@ -8,14 +8,15 @@ namespace ErgometerDoctorApplication
         private string name;
         private bool IsNew;
         private double timestamp;
+        private int stepID;
 
-        public SessionPanel(int session, string name, bool isNew,double timestamp) : base()
+        public SessionPanel(int session, string name, bool isNew,double timestamp,int stepid) : base()
         {
             this.timestamp = timestamp;
             Session = session;
             this.name = name;
             IsNew = isNew;
-
+            this.stepID = stepid;
             this.Location = new System.Drawing.Point(0, 0);
             this.Size = new System.Drawing.Size(180, 100);
             this.BackColor = System.Drawing.Color.DarkGray;
@@ -80,9 +81,9 @@ namespace ErgometerDoctorApplication
         private void SessionPanel_Click(object sender, System.EventArgs e)
         {
             if(IsNew)
-                MainClient.StartNewClient(name, Session);
+                MainClient.StartNewClient(name, Session,stepID);
             else
-                MainClient.StartOldClient(name, Session);
+                MainClient.StartOldClient(name, Session,stepID);
         }
 
         public System.Windows.Forms.Label labelName;

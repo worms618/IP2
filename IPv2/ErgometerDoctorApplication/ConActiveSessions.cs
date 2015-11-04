@@ -63,7 +63,7 @@ namespace ErgometerDoctorApplication
             foreach (KeyValuePair<int, string> pair in actives)
             {
 
-                flowlayout.Controls.Add(new SessionPanel(pair.Key, pair.Value, true,0));
+                flowlayout.Controls.Add(new SessionPanel(pair.Key, pair.Value, true,0,0));
             }
         }
 

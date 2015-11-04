@@ -27,14 +27,14 @@ namespace ErgometerDoctorApplication
 
         public delegate void UpdateGraph();
         public UpdateGraph updateGraph;
-
-        public SessionWindow(string ClientName, bool old, int session, ClientThread parentthread)
+        public int stepID;
+        public SessionWindow(string ClientName, bool old, int session,int stepID, ClientThread parentthread)
         {
             this.ActiveSession = !old;
             this.ClientName = ClientName;
             this.client = parentthread;
             Session = session;
-
+            this.stepID = stepID;
             count = 0;
 
             updateMetingen = new UpdateMetingen(this.SaveMeting);

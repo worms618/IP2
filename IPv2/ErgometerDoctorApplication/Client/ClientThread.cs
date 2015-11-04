@@ -20,13 +20,13 @@ namespace ErgometerDoctorApplication
         public List<Meting> Metingen { get; set; }
         public List<ChatMessage> Chat { get; }
 
-        public ClientThread(string name, int session, bool old)
+        public ClientThread(string name, int session,int stepid, bool old)
         {
             Name = name;
             Session = session;
             IsOldData = old;
 
-            window = new SessionWindow(Name, old, Session, this);
+            window = new SessionWindow(Name, old, Session,stepid, this);
             window.FormClosed += Window_FormClosed;
 
             Metingen = new List<Meting>();

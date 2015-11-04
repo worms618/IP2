@@ -27,7 +27,7 @@ namespace ErgometerDoctorApplication
 
         private int Session { get; }
 
-        public PanelClientChat(int session, string name) : base()
+        public PanelClientChat(int session, string name,int stepID) : base()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -37,7 +37,7 @@ namespace ErgometerDoctorApplication
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            actions = new PanelClientActions();
+            actions = new PanelClientActions(stepID);
             Session = session;
 
             this.panel3 = new System.Windows.Forms.Panel();

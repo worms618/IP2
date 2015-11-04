@@ -89,6 +89,7 @@ namespace ErgometerApplication
             this.panelDataViewLeft.Controls.Add(energy);
             this.panelDataViewLeft.Controls.Add(actualpower);
             this.panelDataViewLeft.Controls.Add(time);
+            this.panelDataViewLeft.AutoScroll = true;
 
             // 
             // panelClientChat

@@ -22,6 +22,7 @@ namespace ErgometerApplication
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label connectionLabel;
+        private PanelClientActions actionpanel;
 
         public PanelClientChat() : base()
         {
@@ -33,7 +34,7 @@ namespace ErgometerApplication
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-
+            this.actionpanel = new PanelClientActions();
             this.panel3 = new System.Windows.Forms.Panel();
             // 
             // flowLayoutPanel1
@@ -126,7 +127,7 @@ namespace ErgometerApplication
             this.panel3.HorizontalScroll.Visible = false;
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Controls.Add(this.flowLayoutPanel1);
+            this.panel3.Controls.Add(this.actionpanel);
             this.panel3.Location = new System.Drawing.Point(0, 0);
 
             this.panel3.Name = "panel3";
@@ -135,7 +136,7 @@ namespace ErgometerApplication
             // container
             // 
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
+            //this.Controls.Add(this.panel1);
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "container";
@@ -198,5 +199,6 @@ namespace ErgometerApplication
 
         public delegate void ChatDelegate(ChatMessage chat);
         public ChatDelegate passChatMessage;
+
     }
 }

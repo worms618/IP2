@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErgometerLibrary;
 using ErgometerLibrary.Chat;
+using ErgometerApplication;
 
 namespace ErgometerDoctorApplication
 {
@@ -22,6 +23,7 @@ namespace ErgometerDoctorApplication
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label connectionLabel;
+        public PanelClientActions actions;
 
         private int Session { get; }
 
@@ -35,7 +37,7 @@ namespace ErgometerDoctorApplication
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-
+            actions = new PanelClientActions();
             Session = session;
 
             this.panel3 = new System.Windows.Forms.Panel();
@@ -130,7 +132,7 @@ namespace ErgometerDoctorApplication
             this.panel3.HorizontalScroll.Visible = false;
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Controls.Add(this.flowLayoutPanel1);
+            this.panel3.Controls.Add(this.actions);
             this.panel3.Location = new System.Drawing.Point(0, 0);
 
             this.panel3.Name = "panel3";
@@ -139,7 +141,7 @@ namespace ErgometerDoctorApplication
             // container
             // 
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
+            //this.Controls.Add(this.panel1);
             this.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "container";
